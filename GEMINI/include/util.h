@@ -88,6 +88,7 @@ extern len_t* part_intv(len_t tot_len, len_t ncuts);
 // Calculate the gcd of a and b. (not impl. by std before C++17)
 extern len_t getGCD(len_t a, len_t b);
 
+// 描述位置信息的结构体，其中重载了一些函数
 struct pos_t{
 	typedef std::uint16_t pos_hash_t;
 	mlen_t x,y;

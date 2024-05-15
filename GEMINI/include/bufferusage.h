@@ -5,8 +5,11 @@
 #include "util.h"
 
 class BufferUsage{
+	// 
 	struct pos_hash {
+		// 对 () 操作符进行重载，重载后的 () 实际上为一 hash 函数
 		std::size_t operator()(const pos_t& pos) const {
+			// pos_hash_t(强行将 pos 的内容解释为 pos_hash_t 类型) --hash--> size_t
 			return std::hash<pos_t::pos_hash_t>{}(*reinterpret_cast<const pos_t::pos_hash_t*>(&pos));
 		}
 	};

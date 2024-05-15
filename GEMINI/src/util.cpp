@@ -198,6 +198,7 @@ std::ostream& operator<<(std::ostream& os, const fmap_range& range){
 	return os << "(B=" << range.b << ", C=" << range.c << ", H=" << range.h << ", W=" << range.w << ')';
 }
 
+// 曼哈顿距离
 cidx_t dis(const pos_t& x, const pos_t& y){
 	return std::abs(x.x-y.x)+std::abs(x.y-y.y);
 }
