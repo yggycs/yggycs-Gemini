@@ -32,11 +32,12 @@ private:
 	
 
 public:
+	// 使用 range 来描述 cluster 或者使用 core_list 来描述 cluster
 	Cluster(cidx_t _first, cidx_t _last);
 	Cluster(std::vector<cidx_t>& _tilelist);//for spatial mapping
 	bool operator==(const Cluster& other) const;
 	bool operator!=(const Cluster& other) const;
-
+	// 删除、增加 core_list 中的元素
 	void erase(std::vector<cidx_t> & _erase_list);//for spatial mapping
 	void insert(std::vector<cidx_t>& _insert_loc, std::vector<cidx_t>& _insert_value);//for spatial mapping
 	void erase(cidx_t _erase_element);//for spatial mapping
@@ -44,6 +45,7 @@ public:
 	void change_to_list();//change range mode to list mode
 
 	cidx_t num_cores() const;
+	// 第一遍没看懂，好像是一种分配算法
 	allocRes_t try_alloc(utime_t* ops, cidx_t childNum, utime_t totOps=0, bool base= false) const;
 	Cluster sub_cluster(cidx_t childIdx, const allocRes_t& allocRes) const;
 	Cluster sub_cluster(cidx_t from, cidx_t num) const;

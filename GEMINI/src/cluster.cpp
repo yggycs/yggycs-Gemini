@@ -67,9 +67,16 @@ void Cluster::set_core_set(){
 	assert(!core_set.empty()||!core_list.empty());
 }
 
+// 分配算法（貌似是 SET 论文里提出的，去瞄一眼先）
+// ops: 各个 core 的 op
+// childNum: 待分配的 child 数量
+// totOps: op 总和
+// base: 
 Cluster::allocRes_t Cluster::try_alloc(utime_t* ops, cidx_t childNum, utime_t totOps, bool base) const {
+	// cluster 中 core 的数量
 	cidx_t totalNodes = num_cores();
 	if (childNum > totalNodes) return nullptr;
+	// 计算总 op ： totOps
 	if (totOps <= 0) {
 		totOps = 0;
 		for (cidx_t i = 0; i < childNum; ++i) {
